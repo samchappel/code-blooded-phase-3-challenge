@@ -23,7 +23,6 @@ class Viewer:
 
     def movie_reviewed(self, movie):
         return movie in self.reviewed_movies()
-        # return any(review.movie == movie for review in self.reviews())
 
     def rate_movie(self, movie, rating):
-        pass
+        Review(self, movie, rating)
