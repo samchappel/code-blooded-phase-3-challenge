@@ -3,8 +3,11 @@ from classes.Review import Review
 
 class Movie:
 
+    all = []
+
     def __init__(self, title):
         self.title = title
+        self.__class__.all.append(self)
 
     def get_title(self):
         return self._title 
@@ -29,4 +32,13 @@ class Movie:
 
     @classmethod
     def highest_rated(cls):
-        pass
+        movies_with_ratings = [movie for movie in cls.all if movie.reviews()]
+        if not movies_with_ratings:
+            return None
+        highest_rated_movie = movies_with_ratings[0]
+        for movie in movies_with_ratings:
+            if movie.average_rating() > highest_rated_movie.average_rating():
+                highest_rated_movie = movie
+        if highest_rated_movie not in cls.all:
+            cls.all.append(highest_rated_movie)
+        return highest_rated_movie
