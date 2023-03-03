@@ -42,6 +42,3 @@ class Review:
     movie = property(get_movie, set_movie)
 
 
-
-    # rating property goes here!
-
